@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Homemade Halal Food – Ontario, CA</title>
+<style>
+:root{--bg:#f6efe2;--card:#fffaf0;--tx:#2b1d16;--mu:#7a6a5c;--ac:#2f6b3a;--ac2:#7a2e2e;--bd:#e0d3bd;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1511;--card:#2a201a;--tx:#f3e8d8;--mu:#b5a48f;--ac:#5aa56a;--ac2:#d27a7a;--bd:#43352b}}
+:root[data-theme="dark"]{--bg:#1c1511;--card:#2a201a;--tx:#f3e8d8;--mu:#b5a48f;--ac:#5aa56a;--ac2:#d27a7a;--bd:#43352b}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.45 Georgia,'Times New Roman',serif}
+.w{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:30px;margin:8px 0}h2{font-size:20px;margin:22px 0 8px;color:var(--ac2)}
+.mu{color:var(--mu);font-size:14px}.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin:10px 0}
+button,.b{font:600 16px system-ui,sans-serif;background:var(--ac);color:#fff;border:0;border-radius:10px;padding:12px 18px;cursor:pointer;text-decoration:none;display:inline-block}
+.b2{background:transparent;color:var(--ac);border:1px solid var(--ac)}.dg{background:var(--ac2)}
+input{font:16px system-ui,sans-serif;width:100%;padding:11px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);margin:4px 0}
+.r{display:flex;gap:8px;align-items:center;justify-content:space-between}.r>*{margin:0}
+.q{display:flex;gap:10px;align-items:center}.q button{padding:6px 14px}
+.bar{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--bd);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;align-items:center;gap:8px}
+.er{color:var(--ac2);font-family:system-ui}.sm{width:auto;max-width:100%}.g{display:grid;grid-template-columns:2fr 1.3fr .8fr auto auto;gap:6px;align-items:center}
+.ov{overflow-x:auto}select{font:16px system-ui,sans-serif;width:100%;padding:11px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);margin:4px 0}a.l{color:var(--mu);font-size:13px}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:10px 0}.tabs button{padding:8px 12px;white-space:nowrap}.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}.ph img{width:100%;border-radius:10px;display:block}.ph{margin:0}
+</style></head><body>
+<div class="w" id="app"></div>
+<script id="st" type="application/json">{"wa":"13105698903","admins":[{"u":"admin","h":"8ecf9fdb7666c72f863b3cb03d0368e7a1bb4daefaece43ede476ba4c3ae99e8"}],"banned":[],"items":[
+{"n":"Honey Garlic Chicken with Rice & Vegetables","c":"Main Dishes","p":14},
+{"n":"Slow-Cooked Beef with Potatoes","c":"Main Dishes","p":14},
+{"n":"Creamy Chicken with Rice","c":"Main Dishes","p":14},
+{"n":"Chicken with Stewed Potatoes","c":"Main Dishes","p":14},
+{"n":"Slow-Cooked Beef with Buckwheat","c":"Main Dishes","p":14},
+{"n":"Teriyaki Chicken with Rice & Vegetables","c":"Main Dishes","p":14},
+{"n":"Beef Nest with Potatoes","c":"Main Dishes","p":14},
+{"n":"Beef Nest with Buckwheat & Vegetables","c":"Main Dishes","p":14},
+{"n":"Creamy Broccoli Soup","c":"Soups","p":8},
+{"n":"Split Pea Soup with Smoked Meat","c":"Soups","p":8},
+{"n":"Homestyle Chicken Soup","c":"Soups","p":8},
+{"n":"Beef & Potato Soup","c":"Soups","p":8},
+{"n":"Cucumber & Tomato Salad","c":"Salads","p":6},
+{"n":"Sauerkraut","c":"Salads","p":6},
+{"n":"Kimchi","c":"Salads","p":6},
+{"n":"Homemade Meat Pies","c":"Pies","p":5},
+{"n":"Creamy Garlic","c":"Sauces","p":2},
+{"n":"Brown Gravy","c":"Sauces","p":2},
+{"n":"Honey Garlic","c":"Sauces","p":2},
+{"n":"Spicy Red Salsa","c":"Sauces","p":2}]}</script>
+<script>
+const $=s=>document.querySelector(s),app=$('#app');
+let S=Object.assign({photos:[],fb:'',ig:'',lim:60,free:30,rate:2,big:100,freeS:10,freeB:20,locs:[{n:'Ontario',m:10,mi:3},{n:'Rancho Cucamonga',m:15,mi:8},{n:'Pomona',m:20,mi:12},{n:'Fontana',m:20,mi:12},{n:'Riverside',m:30,mi:22},{n:'Corona',m:30,mi:22},{n:'San Bernardino',m:35,mi:25},{n:'Moreno Valley',m:45,mi:35},{n:'Los Angeles',m:50,mi:40},{n:'Victorville',m:50,mi:45},{n:'Palm Springs',m:75,mi:70}]},JSON.parse($('#st').textContent)),view='home',cart={},dirty=false,msg='',
+cu=JSON.parse(localStorage.getItem('cu')||'null'),adm=sessionStorage.getItem('adm');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dig=p=>String(p).replace(/\D/g,'').replace(/^1(?=\d{10}$)/,'');
+const sha=async t=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)))].map(b=>b.toString(16).padStart(2,'0')).join('');
+const norm=s=>{const d=dig(s);return d.length>=10?d:String(s).trim()};
+let lang=localStorage.getItem('lang')||'en';
+const RU={"Honey Garlic Chicken with Rice & Vegetables": "Курица в медово-чесночном соусе с рисом и овощами", "Slow-Cooked Beef with Potatoes": "Тушёная говядина с картофелем", "Creamy Chicken with Rice": "Курица в сливочно-чесночном соусе с рисом и грибами", "Chicken with Stewed Potatoes": "Курица с тушёным картофелем", "Slow-Cooked Beef with Buckwheat": "Тушёная говядина с гречкой", "Teriyaki Chicken with Rice & Vegetables": "Курица Терияки с рисом и овощами", "Beef Nest with Potatoes": "Мясное гнездо с сыром и тушёным картофелем", "Beef Nest with Buckwheat & Vegetables": "Мясное гнездо с гречкой и овощами", "Creamy Broccoli Soup": "Крем-суп из брокколи", "Split Pea Soup with Smoked Meat": "Гороховый суп с копчёностями", "Homestyle Chicken Soup": "Куриный домашний суп", "Beef & Potato Soup": "Суп с говядиной и картофелем", "Cucumber & Tomato Salad": "Огурцы и помидоры с луком", "Sauerkraut": "Квашеная капуста", "Kimchi": "Кимчи", "Homemade Meat Pies": "Домашние пирожки с мясом", "Creamy Garlic": "Сливочно-чесночный", "Brown Gravy": "Мясная подлива", "Honey Garlic": "Медово-чесночный", "Spicy Red Salsa": "Острая красная сальса"},CR={"Main Dishes": "Горячие блюда", "Soups": "Супы", "Salads": "Салаты", "Pies": "Пирожки", "Sauces": "Соусы"};
+const ES={"Honey Garlic Chicken with Rice & Vegetables": "Pollo con miel y ajo, arroz y verduras", "Slow-Cooked Beef with Potatoes": "Res estofada con papas", "Creamy Chicken with Rice": "Pollo cremoso con arroz", "Chicken with Stewed Potatoes": "Pollo con papas guisadas", "Slow-Cooked Beef with Buckwheat": "Res estofada con trigo sarraceno", "Teriyaki Chicken with Rice & Vegetables": "Pollo teriyaki con arroz y verduras", "Beef Nest with Potatoes": "Nido de carne con papas", "Beef Nest with Buckwheat & Vegetables": "Nido de carne con trigo sarraceno y verduras", "Creamy Broccoli Soup": "Crema de brócoli", "Split Pea Soup with Smoked Meat": "Sopa de chícharos con carne ahumada", "Homestyle Chicken Soup": "Sopa de pollo casera", "Beef & Potato Soup": "Sopa de res y papa", "Cucumber & Tomato Salad": "Ensalada de pepino y tomate", "Sauerkraut": "Chucrut", "Kimchi": "Kimchi", "Homemade Meat Pies": "Pasteles de carne caseros", "Creamy Garlic": "Ajo cremoso", "Brown Gravy": "Salsa de carne", "Honey Garlic": "Miel y ajo", "Spicy Red Salsa": "Salsa roja picante"},CS={"Main Dishes": "Platos principales", "Soups": "Sopas", "Salads": "Ensaladas", "Pies": "Pasteles", "Sauces": "Salsas"};
+const nm=i=>lang=='ru'?(i.r||RU[i.n]||i.n):i.n,cn=c=>lang=='ru'?(CR[c]||c):c;
+const T={en:{tag:'Fresh • Real Food • Always Halal — Ontario, CA',ban:'Sorry, ordering is not available for this number.',bf:'Before you order',bfp:'Enter your name and phone number to see the menu.',yn:'Your name',ph:'Phone number',see:'See the menu',bad:'Please enter a valid phone number.',intro:'Homemade meals for <b>truck drivers</b>, <b>families</b> and <b>party orders</b>. Fresh, ready to eat, made with care.',ord:'Order now',q:'Questions? WhatsApp',hi:'Hi',no:'not you?',tot:'Total',send:'Send order on WhatsApp',add:'Add items to order',msg:'Hi! New order from',ttl:'Homemade Halal Food',tHome:'Home',tOrder:'Order',tComm:'Community',tFollow:'Follow us',commT:'Community',commE:'No photos yet. Check back soon!',fol:'Follow us on Facebook or Instagram',soon:'Links coming soon.',tOrders:'My orders',again:'Order again',ordE:'No orders yet.',loc:'Delivery area',pick:'Choose your area',oth:'Other place',othp:'Type your city or address',conf:'We will confirm the time and delivery fee with you on WhatsApp.',geo:'Use my current location',long:'Your order will take a while. You are far from us.',min:'min away',gerr:'Could not get your location. Please choose from the list.',my:'My location',needloc:'Choose a delivery area to order',note:'Notes for your order',notep:'e.g. no spice, no onions',time:'Delivery time',asap:'As soon as possible',p30:'In 30 minutes',p60:'In 1 hour',p120:'In 2 hours',ptime:'At a specific time',sold:'Sold out',otype:'Order type',pickup:'Pick-up',deliv:'Delivery',addr:'Pick-up address',feeL:'Delivery fee',free0:'Free delivery',freeUp:'Free delivery up to',addMore:'Add {a} more for free delivery up to {m} miles.',explore:'Explore the menu',checkout:'Check out',gateC:'Enter your name and phone number to check out.'},
+ru:{tag:'Свежая еда • Всегда халяль — Ontario, CA',ban:'Извините, заказ с этого номера недоступен.',bf:'Перед заказом',bfp:'Введите имя и номер телефона, чтобы увидеть меню.',yn:'Ваше имя',ph:'Номер телефона',see:'Показать меню',bad:'Введите правильный номер телефона.',intro:'Домашняя еда для <b>трак-драйверов</b>, <b>семей</b> и <b>заказов на любой случай</b>. Свежая, готовая к употреблению, с любовью и заботой.',ord:'Заказать',q:'Вопросы? WhatsApp',hi:'Здравствуйте,',no:'это не вы?',tot:'Итого',send:'Отправить заказ в WhatsApp',add:'Добавьте блюда в заказ',msg:'Здравствуйте! Новый заказ от',ttl:'Домашняя халяльная еда',tHome:'Главная',tOrder:'Заказ',tComm:'Сообщество',tFollow:'Подписаться',commT:'Сообщество',commE:'Пока нет фото. Заходите позже!',fol:'Подписывайтесь на нас в Facebook и Instagram',soon:'Ссылки скоро появятся.',tOrders:'Мои заказы',again:'Заказать снова',ordE:'Заказов пока нет.',loc:'Район доставки',pick:'Выберите район',oth:'Другое место',othp:'Введите город или адрес',conf:'Мы уточним время и стоимость доставки с вами в WhatsApp.',geo:'Использовать моё местоположение',long:'Ваш заказ займёт некоторое время. Вы далеко от нас.',min:'мин в пути',gerr:'Не удалось определить местоположение. Выберите из списка.',my:'Моё местоположение',needloc:'Выберите район доставки, чтобы заказать',note:'Примечание к заказу',notep:'Например: без острого, без лука',time:'Время доставки',asap:'Как можно скорее',p30:'Через 30 минут',p60:'Через 1 час',p120:'Через 2 часа',ptime:'В определённое время',sold:'Нет в наличии',otype:'Тип заказа',pickup:'Самовывоз',deliv:'Доставка',addr:'Адрес самовывоза',feeL:'Стоимость доставки',free0:'Бесплатная доставка',freeUp:'Бесплатная доставка до',addMore:'Добавьте ещё {a} для бесплатной доставки до {m} миль.',explore:'Посмотреть меню',checkout:'Оформить заказ',gateC:'Введите имя и номер телефона, чтобы оформить заказ.'}};
+T.es={tag:'Comida fresca • Siempre halal — Ontario, CA',ban:'Lo sentimos, no se pueden hacer pedidos desde este número.',bf:'Antes de pedir',bfp:'Ingrese su nombre y número de teléfono para ver el menú.',yn:'Su nombre',ph:'Número de teléfono',see:'Ver el menú',bad:'Ingrese un número de teléfono válido.',intro:'Comida casera para <b>camioneros</b>, <b>familias</b> y <b>pedidos para fiestas</b>. Fresca, lista para comer y hecha con cariño.',ord:'Pedir ahora',q:'¿Preguntas? WhatsApp',hi:'Hola',no:'¿no es usted?',tot:'Total',send:'Enviar pedido por WhatsApp',add:'Agregue platillos al pedido',msg:'¡Hola! Nuevo pedido de',ttl:'Comida Halal Casera',tHome:'Inicio',tOrder:'Pedir',tOrders:'Mis pedidos',tComm:'Comunidad',tFollow:'Síganos',commT:'Comunidad',commE:'Todavía no hay fotos. ¡Vuelva pronto!',fol:'Síganos en Facebook o Instagram',soon:'Enlaces próximamente.',again:'Pedir de nuevo',ordE:'Todavía no hay pedidos.',loc:'Zona de entrega',pick:'Elija su zona',oth:'Otro lugar',othp:'Escriba su ciudad o dirección',conf:'Confirmaremos la hora y el costo de entrega con usted por WhatsApp.',geo:'Usar mi ubicación actual',long:'Su pedido tardará un poco. Está lejos de nosotros.',min:'min de distancia',gerr:'No se pudo obtener su ubicación. Elija de la lista.',my:'Mi ubicación',needloc:'Elija una zona de entrega para pedir',note:'Notas del pedido',notep:'Ej.: sin picante, sin cebolla',time:'Hora de entrega',asap:'Lo antes posible',p30:'En 30 minutos',p60:'En 1 hora',p120:'En 2 horas',ptime:'A una hora específica',sold:'Agotado',otype:'Tipo de pedido',pickup:'Recoger',deliv:'Entrega a domicilio',addr:'Dirección de recogida',feeL:'Costo de entrega',free0:'Entrega gratis',freeUp:'Entrega gratis hasta',addMore:'Agregue {a} más para entrega gratis hasta {m} millas.',explore:'Explorar el menú',checkout:'Finalizar pedido',gateC:'Ingrese su nombre y número de teléfono para finalizar el pedido.'};
+const L=k=>T[lang][k]??T.en[k];
+const isBan=p=>S.banned.includes(dig(p));
+const money=n=>'$'+(+n).toFixed(2);
+const TB=[['home','tHome'],['order','tOrder'],['orders','tOrders'],['comm','tComm'],['follow','tFollow']];
+const tabs=()=>{const cur=view=='menu'||view=='gate'?'order':view;return `<div class="tabs">`+TB.map(([v,k])=>`<button class="${cur==v?'':'b2'}" data-a="tab" data-v="${v}">${L(k)}</button>`).join('')+(adm?`<button class="b2" data-a="goadmin" style="border-color:var(--ac2);color:var(--ac2)">${lang=='ru'?'Админ':'Admin'}</button>`:'')+`</div>`};
+const okU=u=>/^https?:\/\//i.test(u||'');
+function commV(){return `<h2>${L('commT')}</h2>`+(S.photos.length?`<div class="pg">`+S.photos.filter(p=>/^data:image\//.test(p.d)).map(p=>`<figure class="ph"><img src="${p.d}" alt="">${p.c?`<div class="mu">${esc(p.c)}</div>`:''}</figure>`).join('')+`</div>`:`<p class="mu">${L('commE')}</p>`)}
+function followV(){const l=[['Facebook',S.fb],['Instagram',S.ig]].filter(x=>okU(x[1]));return `<h2>${L('fol')}</h2>`+(l.length?l.map(x=>`<p><a class="b" target="_blank" rel="noopener" href="${esc(x[1])}">${x[0]}</a></p>`).join(''):`<p class="mu">${L('soon')}</p>`)}
+function adminPh(){return `<h2>Community photos</h2><div class="card"><input id="cap" placeholder="Caption (optional)"><input type="file" accept="image/*" data-f="file"><div class="mu">Choose a photo to add it. About 30 photos max.</div></div><div class="pg">`+S.photos.map((p,k)=>`<div class="card"><img src="${p.d}" alt="" style="width:100%;border-radius:8px"><div class="mu">${esc(p.c)}</div><button class="dg" data-a="delph" data-k="${k}">Delete</button></div>`).join('')+`</div><h2>Social links</h2><div class="card"><input data-f="fb" placeholder="Facebook link (https://...)" value="${esc(S.fb)}"><input data-f="ig" placeholder="Instagram link (https://...)" value="${esc(S.ig)}"></div>`}
+const rn=i=>i.r||RU[i.n]||'',sn=i=>i.s||ES[i.n]||'',bn=i=>i.n+(rn(i)?' / '+rn(i):'')+(lang=='es'&&sn(i)?' / '+sn(i):'');
+const hist=()=>cu?JSON.parse(localStorage.getItem('ord_'+cu.phone)||'[]'):[];
+const byN=n=>S.items.find(x=>x.n==n);
+function ordersV(){const h=hist();return `<h2>${L('tOrders')}</h2>`+(h.length?h.map((o,k)=>{let tot=0;const ls=o.i.map(x=>{const it=byN(x.n);if(it)tot+=x.q*it.p;return `<div>${x.q}× ${esc(it?bn(it):x.n)}</div>`}).join('');return `<div class="card"><div class="mu">${new Date(o.t).toLocaleString(({ru:'ru-RU',es:'es-US'})[lang]||'en-US')}</div>${ls}<div class="r"><b>${L('tot')} ${money(tot)}</b><button data-a="again" data-k="${k}">${L('again')}</button></div></div>`}).join(''):`<p class="mu">${L('ordE')}</p>`)}
+function saveOrder(){const i=Object.keys(cart).filter(k=>cart[k]>0&&S.items[k]).map(k=>({n:S.items[k].n,q:cart[k]}));if(!i.length||!cu)return;const h=hist();h.unshift({t:Date.now(),i});localStorage.setItem('ord_'+cu.phone,JSON.stringify(h.slice(0,20)));setTimeout(()=>{cart={};render()},400)}
+let pl=JSON.parse(localStorage.getItem('pl')||'null'),gmsg='';
+const savePl=()=>localStorage.setItem('pl',JSON.stringify(pl));
+function locV(){const lg=pl&&pl.m!=null&&pl.m>S.lim,f=fee();
+return `<div class="card"><b>${L('loc')}</b><select data-f="loc"><option value="">${L('pick')}</option>`+S.locs.map((l,k)=>`<option value="${k}" ${pl&&!pl.o&&pl.n==l.n?'selected':''}>${esc(l.n)}</option>`).join('')+`<option value="o" ${pl&&pl.o?'selected':''}>${L('oth')}</option></select>`+(pl&&pl.o?`<input data-f="oth" placeholder="${L('othp')}" value="${esc(pl.n)}"><div class="mu">${L('conf')}</div>`:'')+`<div><button class="b2" data-a="geo">${L('geo')}</button></div>`+(lg?`<div class="er">${L('long')} (~${pl.m} ${L('min')})</div>`:(pl&&pl.m!=null?`<div class="mu">~${pl.m} ${L('min')}</div>`:''))+(pl&&pl.mi!=null?`<div class="${f?'er':'mu'}">${f?L('feeL')+': '+money(f):L('free0')} (~${pl.mi} mi)</div>`:'')+(pl&&pl.mi!=null?`<div class="mu">${L('freeUp')} ${freeMi()} mi</div>`:'')+(pl&&pl.mi!=null&&pl.mi>S.freeS&&pl.mi<=S.freeB&&sub()<S.big?`<div class="mu">${L('addMore').replace('{a}',money(S.big-sub())).replace('{m}',S.freeB)}</div>`:'')+`<div class="er">${gmsg}</div></div>`}
+function adminLoc(){return `<h2>Delivery areas</h2><div class="card"><div class="mu">Minutes = estimated drive time from Ontario, CA. Farther than the limit shows "your order will take a while".</div>Limit (minutes)<input type="number" data-f="lim" value="${S.lim}">Big order from ($)<input type="number" data-f="big" value="${S.big}">Free miles, smaller orders<input type="number" data-f="freeS" value="${S.freeS}">Free miles, big orders<input type="number" data-f="freeB" value="${S.freeB}">Fee per extra mile ($)<input type="number" step="0.01" data-f="rate" value="${S.rate}"></div><div class="g" style="grid-template-columns:2fr 1fr 1fr auto"><span class="mu">Area</span><span class="mu">Min</span><span class="mu">Miles</span><span></span></div>`+S.locs.map((l,k)=>`<div class="g" style="grid-template-columns:2fr 1fr 1fr auto"><input data-lk="${k}" data-lf="n" value="${esc(l.n)}"><input data-lk="${k}" data-lf="m" type="number" value="${l.m}"><input data-lk="${k}" data-lf="mi" type="number" value="${l.mi}"><button class="dg" data-a="delloc" data-k="${k}">✕</button></div>`).join('')+`<form data-f="addloc" class="card"><b>Add area</b><input name="n" placeholder="City or area" required><input name="m" type="number" placeholder="Minutes from Ontario" required><input name="mi" type="number" placeholder="Miles from Ontario" required><button>Add area</button></form>`}
+const AR={"Big order from ($)":"Крупный заказ от ($)","Free miles, smaller orders":"Бесплатные мили, меньшие заказы","Free miles, big orders":"Бесплатные мили, крупные заказы","Sold out":"Нет в наличии","Free delivery up to (miles)":"Бесплатная доставка до (миль)","Fee per extra mile ($)":"Плата за каждую лишнюю милю ($)","Kitchen / pick-up address":"Адрес кухни / самовывоза","Area":"Район","Min":"Мин","Miles":"Мили","Miles from Ontario":"Миль от Ontario","Admin": "Админ-панель", "Admin sign in": "Вход для админа", "Phone number or username": "Номер телефона или логин", "Password": "Пароль", "Sign in": "Войти", "Wrong username or password.": "Неверный логин или пароль.", "← Back to site": "← Назад на сайт", "Sign out": "Выйти", "Signed in as": "Вы вошли как", ". Edit, then press Save & Publish.": ". Измените и нажмите «Сохранить и опубликовать».", "Menu items": "Позиции меню", "Add item": "Добавить блюдо", "Item name": "Название блюда", "Russian name (optional)": "Название по-русски (необязательно)", "Spanish name (optional)": "Название по-испански (необязательно)", "Category (e.g. Soups)": "Категория (например, Soups)", "Price": "Цена", "Community photos": "Фото для сообщества", "Caption (optional)": "Подпись (необязательно)", "Choose a photo to add it. About 30 photos max.": "Выберите фото, чтобы добавить его. Максимум около 30 фото.", "Delete": "Удалить", "Social links": "Ссылки на соцсети", "Facebook link (https://...)": "Ссылка на Facebook (https://...)", "Instagram link (https://...)": "Ссылка на Instagram (https://...)", "Delivery areas": "Районы доставки", "Minutes = estimated drive time from Ontario, CA. Farther than the limit shows \"your order will take a while\".": "Минуты = примерное время в пути от Ontario, CA. Если дальше лимита, клиент увидит «ваш заказ займёт некоторое время».", "Limit (minutes)": "Лимит (минуты)", "City or area": "Город или район", "Minutes from Ontario": "Минут от Ontario", "Add area": "Добавить район", "Admins": "Админы", "you": "вы", "Remove": "Удалить", "Add admin": "Добавить админа", "Phone number (their login)": "Номер телефона (логин)", "Banned phone numbers": "Заблокированные номера", "No one banned.": "Никто не заблокирован.", "Unban": "Разблокировать", "Ban a number": "Заблокировать номер", "Phone number": "Номер телефона", "Ban": "Заблокировать", "Unsaved changes": "Есть несохранённые изменения", "All saved": "Всё сохранено", "Save & Publish": "Сохранить и опубликовать", "Published.": "Опубликовано.", "Could not publish. Open this page while signed in to claude.ai as its owner, then save again.": "Не удалось опубликовать. Откройте страницу, войдя в claude.ai как владелец, и сохраните снова.", "Could not read that photo.": "Не удалось прочитать фото.", "That admin already exists.": "Такой админ уже есть."};
+function tr(el){if(lang!='ru')return;const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){const k=n.nodeValue.trim();if(AR[k])n.nodeValue=n.nodeValue.replace(k,AR[k])}el.querySelectorAll('[placeholder]').forEach(i=>{if(AR[i.placeholder])i.placeholder=AR[i.placeholder]})}
+const LB=()=>`<div class="tabs" style="margin:0">`+['en','ru'].map(x=>`<button class="${lang==x?'':'b2'}" data-a="lang" data-v="${x}">${x=='en'?'EN':'РУ'}</button>`).join('')+`</div>`;
+let note='',pt={m:'asap',t:''},mode='delivery';
+const sub=()=>S.items.reduce((a,i,k)=>a+(i.x?0:(cart[k]||0))*i.p,0);
+const freeMi=()=>sub()>=S.big?S.freeB:S.freeS;
+const fee=()=>pl&&pl.mi!=null?Math.max(0,Math.ceil(pl.mi-freeMi()))*S.rate:0;
+const pickT=()=>pt.m=='time'?(L('ptime')+': '+(pt.t||'-')):L(pt.m=='asap'?'asap':'p'+pt.m);
+function waTxt(){let t=0,ls=[];S.items.forEach((i,k)=>{const q=i.x?0:(cart[k]||0);if(q){t+=q*i.p;ls.push(`${q}x ${bn(i)} (${money(q*i.p)})`)}});const f=fee();return `${L('msg')} ${cu?cu.name:''} (${cu?cu.phone:''}):\n${ls.join('\n')}\n${L('loc')}: ${pl?pl.n+(pl.m!=null?` (~${pl.m} ${L('min')})`:''):'-'}\n${L('feeL')}: ${money(f)}\n${L('tot')}: ${money(t+f)}\n${L('time')}: ${pickT()}\n${L('note')}: ${note||'-'}`}
+function extraV(){return `<div class="card"><b>${L('time')}</b><select data-f="pt">`+[['asap','asap'],['30','p30'],['60','p60'],['120','p120'],['time','ptime']].map(([v,k])=>`<option value="${v}" ${pt.m==v?'selected':''}>${L(k)}</option>`).join('')+`</select>`+(pt.m=='time'?`<input type="time" data-f="ptt" value="${esc(pt.t)}">`:'')+`<b>${L('note')}</b><input data-f="note" placeholder="${L('notep')}" value="${esc(note)}"></div>`}
+function head(){return `<div class="r" style="flex-wrap:wrap"><h1>🍽️ ${L('ttl')}</h1><div class="tabs" style="margin:0">${['en','ru','es'].map(x=>`<button class="${lang==x?'':'b2'}" data-a="lang" data-v="${x}">${x=='en'?'EN':x=='ru'?'РУ':'ES'}</button>`).join('')}</div></div><div class="mu">${L('tag')}</div>${location.hash=='#admin'?'':tabs()}`}
+function foot(){return `<p style="margin-top:30px"><a class="l" href="#admin">Admin</a></p>`}
+function render(){
+ if(location.hash=='#admin'){app.innerHTML=adm?adminV():loginV();tr(app);return}
+ if(cu&&isBan(cu.phone)){app.innerHTML=head()+`<div class="card er">${L('ban')}</div>`+foot();return}
+ if(view=='orders')return void(app.innerHTML=head()+ordersV()+foot());
+ if(view=='comm')return void(app.innerHTML=head()+commV()+foot());
+ if(view=='follow')return void(app.innerHTML=head()+followV()+foot());
+ if(view=='menu')return void(app.innerHTML=menuV());
+ if(view=='gate')return void(app.innerHTML=head()+`<div class="card"><h2 style="margin-top:0">${L('bf')}</h2><p class="mu">${Object.values(cart).some(q=>q>0)?L('gateC'):L('bfp')}</p><form data-f="gate"><input name="n" placeholder="${L('yn')}" required autocomplete="name"><input name="p" type="tel" placeholder="${L('ph')}" required autocomplete="tel"><div class="er">${msg}</div><button>${L('see')}</button></form></div>`+foot());
+ app.innerHTML=head()+`<div class="card"><p>${L('intro')}</p><button data-a="order">${L('ord')}</button></div><p class="mu">${L('q')} <a href="https://wa.me/${S.wa}">(310) 569-8903</a></p>`+foot();
+}
+function menuV(){
+ const cats=[...new Set(S.items.map(i=>i.c))];let t=0,lines=[];
+ let h=head()+(cu?`<p class="mu">${L('hi')} ${esc(cu.name)} — <a class="l" href="#" data-a="out">${L('no')}</a></p>`:'')+`${hist().length?`<p><button class="b2" data-a="again" data-k="0">${L('again')}</button></p>`:''}`;
+ h+=locV()+extraV();cats.forEach(c=>{h+=`<h2>${esc(c)}${CR[c]?' / '+esc(CR[c]):''}${lang=='es'&&CS[c]?' / '+esc(CS[c]):''}</h2>`;S.items.forEach((i,k)=>{if(i.c!=c)return;const q=i.x?0:(cart[k]||0);if(q){t+=q*i.p;lines.push(`${q}x ${bn(i)} (${money(q*i.p)})`)}
+  h+=`<div class="card r"><div><b>${esc(i.n)}</b>${rn(i)?`<div class="mu">${esc(rn(i))}</div>`:''}${lang=='es'&&sn(i)?`<div class="mu">${esc(sn(i))}</div>`:''}<div class="mu">${money(i.p)}</div></div>${i.x?`<span class="er">${L('sold')}</span>`:`<div class="q"><button class="b2" data-a="m" data-k="${k}">−</button><b>${q}</b><button data-a="p" data-k="${k}">+</button></div>`}</div>`})});
+ const txt=waTxt();
+ return h+foot()+`<div class="bar"><b>${L('tot')} ${money(t+fee())}</b>${lines.length&&!cu?`<button data-a="checkout">${L('checkout')}</button>`:lines.length&&pl&&pl.n?`<a class="b" data-a="send" target="_blank" rel="noopener" href="https://wa.me/${S.wa}?text=${encodeURIComponent(txt)}">${L('send')}</a>`:`<span class="mu">${lines.length?L('needloc'):L('add')}</span>`}</div>`;
+}
+function loginV(){return head()+`<div class="card"><h2 style="margin-top:0">Admin sign in</h2><form data-f="login"><input name="u" placeholder="Phone number or username" autocapitalize="none" required><input name="p" type="password" placeholder="Password" required><div class="er">${msg}</div><button>Sign in</button></form></div><p><a class="l" href="#" data-a="home">← Back to site</a></p>`}
+function adminV(){
+ let h=`<div class="r" style="flex-wrap:wrap"><h1>Admin</h1>${LB()}<button class="b2" data-a="logout">Sign out</button></div><p class="mu"><span>Signed in as</span> ${esc(adm)}<span>. Edit, then press Save &amp; Publish.</span></p><div class="er">${msg}</div>`;
+ h+=`<h2>Menu items</h2><div class="ov">`+S.items.map((i,k)=>`<div class="g"><input data-k="${k}" data-f="n" value="${esc(i.n)}"><input data-k="${k}" data-f="c" value="${esc(i.c)}"><input data-k="${k}" data-f="p" type="number" step="0.01" min="0" value="${i.p}"><label class="mu"><input type="checkbox" style="width:auto" data-k="${k}" data-f="x" ${i.x?'checked':''}> Sold out</label><button class="dg" data-a="del" data-k="${k}">✕</button></div>`).join('')+`</div>`;
+ h+=`<form data-f="add" class="card"><b>Add item</b><input name="n" placeholder="Item name" required><input name="r" placeholder="Russian name (optional)"><input name="s" placeholder="Spanish name (optional)"><input name="c" placeholder="Category (e.g. Soups)" required><input name="p" type="number" step="0.01" min="0" placeholder="Price" required><button>Add item</button></form>`;
+ h+=adminPh()+adminLoc()+`<h2>Admins</h2>`+S.admins.map((a,k)=>`<div class="card r"><span>${esc(a.u)}</span>${a.u==adm?'<span class="mu">you</span>':`<button class="dg" data-a="deladm" data-k="${k}">Remove</button>`}</div>`).join('')+`<form data-f="addadm" class="card"><b>Add admin</b><input name="u" placeholder="Phone number (their login)" autocapitalize="none" required><input name="p" type="password" placeholder="Password" required><button>Add admin</button></form>`;
+ h+=`<h2>Banned phone numbers</h2>`+(S.banned.map((b,k)=>`<div class="card r"><span>${esc(b)}</span><button class="b2" data-a="unban" data-k="${k}">Unban</button></div>`).join('')||'<p class="mu">No one banned.</p>')+`<form data-f="ban" class="card"><b>Ban a number</b><input name="p" type="tel" placeholder="Phone number" required><button class="dg">Ban</button></form>`;
+ return h+`<div class="bar"><span class="mu">${dirty?'Unsaved changes':'All saved'}</span><button data-a="save">Save &amp; Publish</button></div><p><a class="l" href="#" data-a="home">← Back to site</a></p>`}
+async function save(){
+ try{const a=window.claude?await claude.use('artifact'):null;if(!a)throw 0;
+  const d=document.documentElement.cloneNode(true);d.querySelector('#st').textContent=JSON.stringify(S).replace(/</g,'\\u003c');d.querySelector('#app').innerHTML='';
+  await a.publish('<!doctype html>\n'+d.outerHTML);dirty=false;msg='Published.'}
+ catch(e){msg='Could not publish. Open this page while signed in to claude.ai as its owner, then save again.'}
+ render()}
+document.addEventListener('click',async e=>{const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,k=+t.dataset.k;
+ if(a=='order'){view='menu';render()}
+ else if(a=='lang'){lang=t.dataset.v;localStorage.setItem('lang',lang);render()}
+ else if(a=='tab'){const v=t.dataset.v;view=v=='order'?'menu':v;render()}
+ else if(a=='delph'){S.photos.splice(k,1);dirty=true;render()}
+ else if(a=='explore'){view='menu';render()}
+ else if(a=='checkout'){view='gate';render()}
+ else if(a=='goadmin'){location.hash='#admin'}
+ else if(a=='send'){t.href='https://wa.me/'+S.wa+'?text='+encodeURIComponent(waTxt());saveOrder()}
+ else if(a=='again'){const o=hist()[k];cart={};(o?o.i:[]).forEach(x=>{const j=S.items.findIndex(y=>y.n==x.n);if(j>=0&&!S.items[j].x)cart[j]=x.q});view='menu';render()}
+ else if(a=='geo'){gmsg='';if(!navigator.geolocation){gmsg=L('gerr');return render()}navigator.geolocation.getCurrentPosition(g=>{const r=Math.PI/180,la=g.coords.latitude,lo=g.coords.longitude,dl=(la-34.0633)*r,dn=(lo+117.6509)*r,h2=Math.sin(dl/2)**2+Math.cos(la*r)*Math.cos(34.0633*r)*Math.sin(dn/2)**2,km=12742*Math.asin(Math.sqrt(h2));pl={n:L('my'),m:Math.max(5,Math.round(km*1.3/70*12)*5),mi:Math.round(km*.621*1.3)};savePl();gmsg='';render()},()=>{gmsg=L('gerr');render()},{timeout:8000})}
+ else if(a=='delloc'){S.locs.splice(k,1);dirty=true;render()}
+ else if(a=='p'){cart[k]=(cart[k]||0)+1;render()}
+ else if(a=='m'){cart[k]=Math.max(0,(cart[k]||0)-1);render()}
+ else if(a=='out'){e.preventDefault();localStorage.removeItem('cu');cu=null;cart={};view='menu';render()}
+ else if(a=='home'){e.preventDefault();location.hash='';view='home';render()}
+ else if(a=='logout'){sessionStorage.removeItem('adm');adm=null;msg='';render()}
+ else if(a=='del'){S.items.splice(k,1);dirty=true;render()}
+ else if(a=='deladm'){S.admins.splice(k,1);dirty=true;render()}
+ else if(a=='unban'){S.banned.splice(k,1);dirty=true;render()}
+ else if(a=='save')save()});
+document.addEventListener('change',e=>{const t=e.target,f=t.dataset.f,k=t.dataset.k;if(k==null)return;S.items[k][f]=f=='p'?(+t.value||0):f=='x'?t.checked:t.value;dirty=true;msg='';render()});
+document.addEventListener('submit',async e=>{e.preventDefault();const f=e.target.dataset.f,v=Object.fromEntries(new FormData(e.target));msg='';
+ if(f=='gate'){const p=dig(v.p);if(p.length<10){msg=L('bad');return render()}
+  if(isBan(p)){cu={name:v.n,phone:p};return render()}
+  cu={name:v.n.trim(),phone:p};localStorage.setItem('cu',JSON.stringify(cu));view='menu';render()}
+ else if(f=='login'){const h=await sha(v.p);if(S.admins.some(a=>a.u==norm(v.u)&&a.h==h)){adm=norm(v.u);sessionStorage.setItem('adm',adm)}else msg='Wrong username or password.';render()}
+ else if(f=='add'){S.items.push({n:v.n,r:(v.r||'').trim(),s:(v.s||'').trim(),c:v.c.trim(),p:+v.p});dirty=true;render()}
+ else if(f=='addadm'){const u=norm(v.u);if(S.admins.some(a=>a.u==u))msg='That admin already exists.';else{S.admins.push({u,h:await sha(v.p)});dirty=true}render()}
+ else if(f=='addloc'){S.locs.push({n:v.n.trim(),m:+v.m,mi:+v.mi});dirty=true;render()}
+ else if(f=='ban'){const p=dig(v.p);if(p&&!S.banned.includes(p)){S.banned.push(p);dirty=true}render()}});
+document.addEventListener('change',async e=>{const t=e.target,f=t.dataset.f;
+ if(f=='loc'){pl=t.value===''?null:t.value=='o'?{n:'',m:null,o:1}:{n:S.locs[t.value].n,m:+S.locs[t.value].m,mi:+S.locs[t.value].mi};savePl();return render()}
+ if(f=='oth'){pl={n:t.value.trim(),m:null,o:1};savePl();return}
+ if(t.dataset.lk!=null){const l=S.locs[t.dataset.lk],g=t.dataset.lf;l[g]=(g=='m'||g=='mi')?(+t.value||0):t.value;dirty=true;return}
+ if(f=='mode'){mode=t.value;return render()}
+ if(f=='pt'){pt.m=t.value;return render()}
+ if(f=='ptt'){pt.t=t.value;return}
+ if(f=='note'){note=t.value.trim();return}
+ if(f=='big'||f=='freeS'||f=='freeB'){S[f]=+t.value||0;dirty=true;return}
+ if(f=='free'){S.free=+t.value||0;dirty=true;return}
+ if(f=='rate'){S.rate=+t.value||0;dirty=true;return}
+ if(f=='addr'){S.addr=t.value.trim();dirty=true;return}
+ if(f=='lim'){S.lim=+t.value||60;dirty=true;return}
+ if(f=='fb'||f=='ig'){S[f]=t.value.trim();dirty=true;return}
+ if(f!='file'||!t.files[0])return;const im=new Image();im.src=URL.createObjectURL(t.files[0]);try{await im.decode()}catch(x){msg='Could not read that photo.';return render()}
+ const sc=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*sc);c.height=Math.round(im.height*sc);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+ S.photos.unshift({d:c.toDataURL('image/jpeg',.72),c:($('#cap')||{}).value||''});dirty=true;render()});
+S.locs.forEach(l=>{if(l.mi==null)l.mi=Math.round(l.m*.75)});
+addEventListener('hashchange',render);render();
+</script></body></html>
